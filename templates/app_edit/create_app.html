@@ -1,0 +1,10 @@
+{% load static %}
+<form method="post" action="" id="addForm" name="">
+
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <div class="cancel0"></div>
+  <div class="cancel"></div>
+
+</form>

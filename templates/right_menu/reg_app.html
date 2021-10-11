@@ -1,0 +1,27 @@
+<div class="history_request">
+    <p>История регистраций заявлений</p>
+    <table class="history_docs">
+        <tr>
+            <th>Уникальный номер</th>
+            <th>Наименование услуги</th>
+            <th>Текст заявления</th>
+            <th>Дата подачи</th>
+            <th>Статус</th>
+            <th>Результат</th>
+            <th>Пользователь</th>
+            <th>Обработать</th>
+        </tr>
+        {% for item in query_results %}
+        <tr>
+{#            <td>{{ item.id }}</td>#}
+{#            <td>{{ item.name }}</td>#}
+{#            <td>{{ item.text }}</td>#}
+{#            <td>{{ item.date }}</td>#}
+{#            <td>{{ item.status }}</td>#}
+{#            <td>{{ item.result }}</td>#}
+{#            <td>{{ item.user }}</td>#}
+{#        <td><a href="" class="shine-button">Редактировать заявление</a></td>#}
+        </tr>
+        {% endfor %}
+    </table>
+</div>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <head>
+        <script
+                src="https://code.jquery.com/jquery-3.5.1.min.js"
+                integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+                crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    </head>
+<body class="avram">
+<div class="container">
+    <div class="grid">
+        <div class="left-corner">
+            <div class="menu">
+
+                <div class="choice1 hist" style="margin-top: 9px;" onclick="applications()">
+                    <span class="choice11"></span>
+                    <div class="sect1">
+                        <a class="per1">Заявки документов</a>
+                    </div>
+                </div>
+
+                <div class="choice1 reg" onclick="reg_app()">
+                    <span class="choice11"></span>
+                    <div class="sect1">
+                        <a class="per1">Зарегистрированные заявления</a>
+                    </div>
+                </div>
+
+                <div class="choice2" onclick="window.open('/logout','mywindow')">
+          <span class="choice11">
+          </span>
+                    <div class="sect1">
+                        <a class="per1">Выход</a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="right-corner">
+            <div class="menu1">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="b-popup" id="popup1">
+</div>
+</body>
+</html>
+
+<script>
+    function applications() {
+        if ($('.hist').css('background') != 'rgba(0, 0, 0, 0.05) none repeat scroll 0% 0% / auto padding-box border-box') {
+            $('.hist').css({'background': 'rgba(0,0,0,0.05)'});
+            $('.reg').css({'background': ''});
+            $('.menu1').css({'overflow-x': 'hidden'});
+        }
+        $.ajax({
+            type: "POST",
+            url: "/moderator_panel/",
+            data: {'data': 'applications', 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+            success: function (data) {
+                $('.menu1').html(data);
+            }
+        });
+    }
+</script>
+
+<script>
+    function reg_app() {
+        if ($('.reg').css('background') != 'rgba(0, 0, 0, 0.05) none repeat scroll 0% 0% / auto padding-box border-box') {
+            $('.reg').css({'background': 'rgba(0,0,0,0.05)'});
+            $('.hist').css({'background': ''});
+            $('.menu1').css({'overflow-x': 'scroll'});
+        }
+        $.ajax({
+            type: "POST",
+            url: "/moderator_panel/",
+            data: {'data': 'reg_app', 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+            success: function (data) {
+                $('.menu1').html(data);
+            }
+        });
+    }
+</script>
+
+<script>
+    $(document).ready(function(){
+        //Скрыть PopUp при загрузке страницы
+        PopUpHide();
+    });
+    //Функция отображения PopUp
+    function PopUpShow(){
+        $("#popup1").show();
+        $.ajax({
+        type: "POST",
+        url: "/moderator_panel/",
+        data: {'data': 'PopUpShow', 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+        success: function (data) {
+            $('.b-popup').html(data);
+        }
+    });
+    }
+    //Функция скрытия PopUp
+    function PopUpHide(){
+        $("#popup1").hide();
+    }
+</script>
+

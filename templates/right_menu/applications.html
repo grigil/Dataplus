@@ -1,0 +1,19 @@
+<div class="history_request">
+    <p>Необработанные заявления</p>
+    <table class="application_docs">
+        <tr>
+            <th>Уникальный номер</th>
+            <th>Наименование услуги</th>
+            <th>Аккаунт</th>
+            <th>Обработать</th>
+        </tr>
+        {% for item in query_results %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.user }}</td>
+            <td><a href="#" onClick="PopUpShow()" class="shine-button">Зарегистрировать</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
