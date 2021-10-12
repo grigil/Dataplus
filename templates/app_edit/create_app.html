@@ -1,10 +1,17 @@
 {% load static %}
-<form method="post" action="" id="addForm" name="">
+           <div class="sss">
+              <img style="height: 500px; width: 500px;" src="/media/{{ file }}">
+           </div>
+<div class="b-popup-content">
+    <form method="post">
 
-  {% csrf_token %}
-  {{ form.as_p }}
+        {% csrf_token %}
+        {{ form.as_p }}
 
-  <div class="cancel0"></div>
-  <div class="cancel"></div>
-
-</form>
+        <input class="cancel0" name="CRUD_app" type="submit" value="Сохранить заявление">
+    </form>
+    <form method="post" action="" id="addForm" name="">
+        {{ form.hidden_id }}
+        {% csrf_token %}
+    <input class="cancel" name="CRUD_app" type="submit" value="Отклонить заявление"></form>
+</div>

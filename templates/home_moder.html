@@ -95,12 +95,12 @@
         PopUpHide();
     });
     //Функция отображения PopUp
-    function PopUpShow(){
+    function PopUpShow(params){
         $("#popup1").show();
         $.ajax({
         type: "POST",
         url: "/moderator_panel/",
-        data: {'data': 'PopUpShow', 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+        data: {'data': 'PopUpShow','hidden_id':params ,'csrfmiddlewaretoken': '{{ csrf_token }}'},
         success: function (data) {
             $('.b-popup').html(data);
         }

@@ -13,14 +13,14 @@
         </tr>
         {% for item in query_results %}
         <tr>
-{#            <td>{{ item.id }}</td>#}
-{#            <td>{{ item.name }}</td>#}
-{#            <td>{{ item.text }}</td>#}
-{#            <td>{{ item.date }}</td>#}
-{#            <td>{{ item.status }}</td>#}
-{#            <td>{{ item.result }}</td>#}
-{#            <td>{{ item.user }}</td>#}
-{#        <td><a href="" class="shine-button">Редактировать заявление</a></td>#}
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.text }}</td>
+            <td>{{ item.date }}</td>
+            <td>{{ item.status }}</td>
+            <td>{{ item.result }}</td>
+            <td>{{ item.user }}</td>
+        <td><a href="#" onClick="PopUpShow('{{ item.id }}')" class="shine-button">Редактировать заявление</a></td>
         </tr>
         {% endfor %}
     </table>

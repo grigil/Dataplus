@@ -8,12 +8,14 @@
             <th>Обработать</th>
         </tr>
         {% for item in query_results %}
+            {% if item.status == 'Выполняются работы по заявлению' %}
         <tr>
             <td>{{ item.id }}</td>
             <td>{{ item.name }}</td>
             <td>{{ item.user }}</td>
-            <td><a href="#" onClick="PopUpShow()" class="shine-button">Зарегистрировать</a></td>
+            <td><a href="#" onClick="PopUpShow('{{ item.id }}')" class="shine-button">Зарегистрировать</a></td>
         </tr>
+            {% endif %}
         {% endfor %}
     </table>
 </div>

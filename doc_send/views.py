@@ -1,9 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from doc_send.models import *
-from django.template import RequestContext
-from django.template.loader import render_to_string
 from doc_send.forms import *
 import datetime
 from django.shortcuts import redirect
@@ -26,16 +23,12 @@ def Send(request):
         if request.POST:
             form = doc_request_form(request.POST, request.FILES)
             if form.is_valid():
-                print("#" * 40)
-                print(form.data)
-                print("#" * 40)
-                data=form.save(commit=False)
-                print(1)
+                data = form.save(commit=False)
                 data.user = request.user
                 data.text = 'В обработке'
                 data.date = datetime.datetime.now()
-                data.status = 'В обработке'
-                data.result = 'В обработке'
+                data.status = 'Выполняются работы по заявлению'
+                data.result = 'Обработка инфы'
                 data.save()
                 return render(request, 'home.html', {'query_results': query_results})
     return render(request, 'home.html', {'query_results': query_results})
