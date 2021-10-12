@@ -14,7 +14,7 @@ def Send(request):
     form = doc_request_form()
     if request.is_ajax():
         if request.POST.get('data') == "history":
-            html = render(request, '../templates/right_menu/history_requests.html', {'query_results': query_results})
+            html = render(request, '../templates/right_menu/history_requests.html', {'query_results': query_results,'user':str(request.user)})
             return HttpResponse(html)
         else:
             html = render(request, '../templates/right_menu/doc_request.html', {'query_results': query_results, 'form': form})
