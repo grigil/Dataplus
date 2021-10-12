@@ -95,12 +95,12 @@
         PopUpHide();
     });
     //Функция отображения PopUp
-    function PopUpShow(params){
+    function PopUpShow(params, type){
         $("#popup1").show();
         $.ajax({
         type: "POST",
         url: "/moderator_panel/",
-        data: {'data': 'PopUpShow','hidden_id':params ,'csrfmiddlewaretoken': '{{ csrf_token }}'},
+        data: {'data': 'PopUpShow','hidden_id':params,'type':type ,'csrfmiddlewaretoken': '{{ csrf_token }}'},
         success: function (data) {
             $('.b-popup').html(data);
         }
@@ -110,5 +110,18 @@
     function PopUpHide(){
         $("#popup1").hide();
     }
+</script>
+
+<script>
+    jQuery(function($){
+      $(document).mouseup(function (e){ // событие клика по веб-документу
+        var tmp = $("#popup1");
+        var div = $(".sss,.b-popup-content"); // тут указываем ID элемента
+        if (!div.is(e.target) // если клик был не по нашему блоку
+            && div.has(e.target).length === 0) { // и не по его дочерним элементам
+          tmp.hide(); // скрываем его
+        }
+      });
+    });
 </script>
 

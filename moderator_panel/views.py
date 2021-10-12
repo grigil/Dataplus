@@ -21,12 +21,9 @@ def Send(request):
             return HttpResponse(html)
         elif request.POST.get('data') == "PopUpShow":
             form = registred_docs_form(request.POST)
+            print(request.POST.get('type'))
             bunch = doc_request.objects.get(id=form.data['hidden_id'])
-            # print("-"*50)
-            # print(bunch.file)
-            # print(form.data)
-            # print("-" * 50)
-            html = render(request, '../templates/app_edit/create_app.html', {'query_results': query_results, 'form': form, 'file':bunch.file})
+            html = render(request, '../templates/app_edit/create_app.html', {'query_results': query_results, 'type':request.POST.get('type'), 'form': form, 'file':bunch.file})
             return HttpResponse(html)
     elif not request.is_ajax():
         if request.POST:
@@ -37,6 +34,13 @@ def Send(request):
             if form.data['CRUD_app'] == 'Удалить заявление':
                 p = registred_docs.objects.get(id=form.data['hidden_id'])
                 p.delete()
+                return render(request, 'home_moder.html', {'query_results': query_results})
+            if form.data['CRUD_app'] == 'Отклонить заявление':
+                p = doc_request.objects.get(id=form.data['hidden_id'])
+                p.status = "Отклонено"
+                p.text = "Отклонено"
+                p.result = "Отклонено"
+                p.save()
                 return render(request, 'home_moder.html', {'query_results': query_results})
             if form.is_valid():
                 data = form.save(commit=False)

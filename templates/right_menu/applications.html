@@ -8,12 +8,12 @@
             <th>Обработать</th>
         </tr>
         {% for item in query_results %}
-            {% if item.status == 'Выполняются работы по заявлению' %}
+            {% if item.status == 'Выполняются работы по заявлению' and item.status != 'Отклонено' %}
         <tr>
             <td>{{ item.id }}</td>
             <td>{{ item.name }}</td>
             <td>{{ item.user }}</td>
-            <td><a href="#" onClick="PopUpShow('{{ item.id }}')" class="shine-button">Зарегистрировать</a></td>
+            <td><a href="#" onClick="PopUpShow('{{ item.id }}','applications')" class="shine-button">Зарегистрировать</a></td>
         </tr>
             {% endif %}
         {% endfor %}

@@ -691,3 +691,12 @@ label{
   width: 500px;
   height: 500px;
 }
+
+.close_tab{
+  float: right;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-image:url('../png/close.png');
+  background-size: 30px 30px;
+}
